@@ -11,6 +11,9 @@ pom.xml.asc
 .hgignore
 .hg/
 
+# pdf files
+*.pdf
+
 # vscode
 .vscode/
 

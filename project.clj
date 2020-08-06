@@ -7,4 +7,5 @@
                  [hiccup "2.0.0-alpha2"]
                  [markdown-to-hiccup "0.6.2"]
                  [clj-htmltopdf "0.1-alpha7"]]
-  :repl-options {:init-ns clj-md2pdf.core})
+  :repl-options {:init-ns clj-md2pdf.core}
+  :main clj-md2pdf.core)

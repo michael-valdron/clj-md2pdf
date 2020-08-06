@@ -13,3 +13,6 @@ pom.xml.asc
 
 # vscode
 .vscode/
+
+# calva
+.calva/

@@ -37,5 +37,4 @@
               (let [[out & ins] (:arguments arg-opts)]
                 (println "Rendering PDF..")
                 (render-pdf-from-files out ins (:options arg-opts))
-                (println "done.")
-                (shutdown-agents))))))
+                (println "done."))))))

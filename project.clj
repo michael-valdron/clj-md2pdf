@@ -10,4 +10,4 @@
                  [eftest "0.5.9"]]
   :plugins [[lein-eftest "0.5.9"]]
   :repl-options {:init-ns clj-md2pdf.core}
-  :main clj-md2pdf.core)
+  :main clj-md2pdf.main)

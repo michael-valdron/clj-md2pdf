@@ -53,4 +53,4 @@
                             (read-string))
                   :debug {:display-html? true
                           :display-options? true}}]
-     (is (= sol-map (parse-options edn-map))))))
+     (is (= sol-map (read-options edn-map))))))

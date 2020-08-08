@@ -7,7 +7,7 @@
                  [org.clojure/tools.cli "1.0.194"]
                  [hiccup "1.0.5"]
                  [markdown-to-hiccup "0.6.2"]
-                 [clj-htmltopdf "0.1-alpha7"] ;; Fix when issue is addressed.
+                 [clj-htmltopdf "0.1-alpha7"]
                  [org.jsoup/jsoup "1.13.1"]
                  [com.openhtmltopdf/openhtmltopdf-core "1.0.4"]
                  [com.openhtmltopdf/openhtmltopdf-pdfbox "1.0.4"]

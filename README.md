@@ -1,8 +1,8 @@
 # clj-md2pdf
 
-A Clojure powered CLI tool and library for performing moderately complex Markdown to PDF document. A great tool 
-for those who desire simple semi-programmatic document creation. Store your content in Markdown, style your document
-with CSS / fonts, set your document properties with readable EDN files.
+A Clojure powered CLI tool and library for performing moderately complex Markdown to PDF document generation. A great 
+tool for those who desire simple semi-programmatic document creation. Store your content in Markdown, style your 
+document with CSS / fonts, set your document properties with readable EDN files.
 
 # Contributors
 

@@ -2,7 +2,7 @@
   (:require [clojure.java.io :as io]
             [clojure.set :refer [rename-keys]]
             [clojure.spec.alpha :as spec]
-            [clj-htmltopdf.core :as htmltopdf]
+            [clj-md2pdf.render :as renderer]
             [markdown-to-hiccup.core :refer [file->hiccup hiccup-in]]))
 
 (def spec-pdf (spec/and string? #(re-matches #"^.*\.pdf$" %)))
@@ -56,16 +56,16 @@
        (hiccup-out)))
 
 (defn ->pdf
-  "Wrapper for `->pdf` in `clj-htmltopdf` which creates parent directories 
+  "Wrapper for `->pdf` in `renderer` which creates parent directories 
    if non-existant."
   [hiccup out options]
   (assert (spec/valid? spec-pdf out) "PDF filename invalid.")
   (io/make-parents out)
   (if (empty? options)
-    (htmltopdf/->pdf hiccup out)
-    (htmltopdf/->pdf hiccup out options)))
+    (renderer/->pdf hiccup out)
+    (renderer/->pdf hiccup out options)))
 
-(defn render-pdf-from-files
+(defn gen-pdf-from-files
   [out ins options]
   (let [hiccup (apply read-md ins)]
     (->> options

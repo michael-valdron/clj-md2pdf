@@ -3,7 +3,7 @@
   (:require [clojure.java.io :as io]
             [clojure.string :as string]
             [clojure.tools.cli :refer [parse-opts]]
-            [clj-md2pdf.core :refer [render-pdf-from-files]]))
+            [clj-md2pdf.core :refer [gen-pdf-from-files]]))
 
 (def file-validator
   [#(.. (io/as-file %) (exists)) "File must exists."])
@@ -36,5 +36,5 @@
               (println "Missing required arguments 'out' and/or 'in'.")
               (let [[out & ins] (:arguments arg-opts)]
                 (println "Rendering PDF..")
-                (render-pdf-from-files out ins (:options arg-opts))
+                (gen-pdf-from-files out ins (:options arg-opts))
                 (println "done."))))))

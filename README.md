@@ -109,13 +109,13 @@ are rendered in the PDF file.
 
 # TODO
 
-- [] Release to [clojars.org](https://clojars.org/)
-- [] Complete `README.md` with current content
-- [] Documentation
-- [] Watermark support
-- [] MathJax support
-- [] Better abstraction of `fn` lists supplied with `objects.edn` file
-- [] Dynamic filetypes for options and styling
+- [ ] Release to [clojars.org](https://clojars.org/)
+- [ ] Complete `README.md` with current content
+- [ ] Documentation
+- [ ] Watermark support
+- [ ] MathJax support
+- [ ] Better abstraction of `fn` lists supplied with `objects.edn` file
+- [ ] Dynamic filetypes for options and styling
 
 # License
 

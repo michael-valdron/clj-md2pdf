@@ -3,8 +3,8 @@
             [clj-htmltopdf.options :refer [page-options->css
                                            build-font-face-styles]]
             [clj-htmltopdf.css :refer [css->str]])
-  (:import [md2pdf.java IRenderer PdfRenderer]))
-
+  (:import [md2pdf.java IRenderer PdfRenderer]
+           [com.openhtmltopdf.util XRLog]))
 
 (defn- create-obj-renderer
   [f]
@@ -65,6 +65,13 @@
           (map? styles)) (embed-styles! head styles))
     html-doc))
 
+(defn- set-logging!
+  [options]
+  (if-let [logger (:logging? options)]
+    (XRLog/setLoggingEnabled logger)
+    (XRLog/setLoggingEnabled false))
+  options)
+
 (defn render-doc
   "Renders HTML DOC object from hiccup and EDN options"
   ([hiccup] (render-doc hiccup {}))
@@ -78,15 +85,17 @@
 
 (defn render-pdf
   [html-doc out options]
-  (->> (get-in options [:objects :by-id])
-       (reduce-kv #(assoc %1 %2 (-> (eval %3)
-                                    (create-obj-renderer))) {})
-       (PdfRenderer/renderPdf html-doc "" out)))
+  ;; TODO: Watermark rendering.
+  (as-> options $
+    (set-logging! $)
+    (get-in $ [:objects :by-id])
+    (reduce-kv #(assoc %1 %2 (-> (eval %3)
+                                 (create-obj-renderer))) {} $)
+    (PdfRenderer/renderPdf html-doc "" out $)))
 
 (defn ->pdf
   "Clojure wrapper for low level Java HTML to PDF renderer."
   ([hiccup out] (->pdf hiccup out {}))
   ([hiccup out options]
    (-> (render-doc hiccup options)
-     ;; TODO: Watermark rendering and logging.
        (render-pdf out options))))

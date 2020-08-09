@@ -40,6 +40,7 @@ public class PdfRenderer {
         return Jsoup.parse(html, baseUri, p);
     }
 
+    // TODO: Watermark rendering.
     public static boolean renderPdf(final org.jsoup.nodes.Document htmlDoc, final String baseUri,
             final String pdfPath, final Map<String, IRenderer> objFns) {
         FileOutputStream os;

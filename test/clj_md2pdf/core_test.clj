@@ -4,16 +4,23 @@
             [markdown-to-hiccup.core :refer [file->hiccup]]
             [clj-md2pdf.core :refer :all]))
 
+(def doc-out "resources/pdf/doc.pdf")
+(def one-md-in "resources/md/doc.md")
+(def doc-metadata "resources/edn/doc.edn")
+(def page-options "resources/edn/page.edn")
+(def styles-props "resources/edn/styles.edn")
+(def objects-renderers "resources/edn/objects.edn")
+
 ;; Library access tests
 (deftest test-markdown
   (testing
-   (is (-> (file->hiccup "resources/md/doc.md")
+   (is (-> (file->hiccup one-md-in)
            (comp not empty?)))))
 
 (deftest test-pdf
   (testing
-   (is (-> (file->hiccup "resources/md/doc.md")
-           (->pdf "resources/pdf/doc.pdf" {})
+   (is (-> (file->hiccup one-md-in)
+           (->pdf doc-out {})
            (comp not nil?)))))
 
 ;; Validation tests
@@ -46,7 +53,7 @@
 ;; Option Parsing
 (deftest test-parse-options
   (testing
-   (let [edn-map {:doc "resources/edn/doc.edn"
+   (let [edn-map {:doc doc-metadata
                   :debug true}
          sol-map {:doc  (-> (:doc edn-map)
                             (slurp)
@@ -54,3 +61,18 @@
                   :debug {:display-html? true
                           :display-options? true}}]
      (is (= sol-map (read-options edn-map))))))
+
+;; Integration Tests
+(deftest test-one-file-run
+  (testing
+   (let [result (gen-pdf-from-files doc-out [one-md-in] {})]
+     (is (= true result)))))
+
+(deftest test-one-file-with-attrs-run
+  (testing
+   (let [options {:doc doc-metadata
+                  :page page-options
+                  :styles styles-props
+                  :objects objects-renderers}
+         result (gen-pdf-from-files doc-out [one-md-in] options)]
+     (is (= true result)))))

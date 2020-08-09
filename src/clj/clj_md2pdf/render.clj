@@ -3,7 +3,14 @@
             [clj-htmltopdf.options :refer [page-options->css
                                            build-font-face-styles]]
             [clj-htmltopdf.css :refer [css->str]])
-  (:import [md2pdf.java PdfRenderer]))
+  (:import [md2pdf.java IRenderer PdfRenderer]))
+
+
+(defn- create-obj-renderer
+  [f]
+  (reify IRenderer
+    (render [_ element-attrs g]
+      (f element-attrs g))))
 
 (defn render-body
   [styles]
@@ -71,13 +78,15 @@
 
 (defn render-pdf
   [html-doc out options]
-  ;; TODO: Object rendering.
-  (PdfRenderer/renderPdf html-doc "" out))
+  (->> (get-in options [:objects :by-id])
+       (reduce-kv #(assoc %1 %2 (-> (eval %3)
+                                    (create-obj-renderer))) {})
+       (PdfRenderer/renderPdf html-doc "" out)))
 
 (defn ->pdf
   "Clojure wrapper for low level Java HTML to PDF renderer."
   ([hiccup out] (->pdf hiccup out {}))
   ([hiccup out options]
-   (let [html-doc (render-doc hiccup options)]
+   (-> (render-doc hiccup options)
      ;; TODO: Watermark rendering and logging.
-     (render-pdf html-doc out options))))
+       (render-pdf out options))))

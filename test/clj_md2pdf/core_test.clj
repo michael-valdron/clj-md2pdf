@@ -1,15 +1,22 @@
 (ns clj-md2pdf.core-test
   (:require [clojure.test :refer :all]
+            [clojure.java.io :as io]
             [clojure.spec.alpha :as spec]
             [markdown-to-hiccup.core :refer [file->hiccup]]
             [clj-md2pdf.core :refer :all]))
 
-(def doc-out "resources/pdf/doc.pdf")
-(def one-md-in "resources/md/doc.md")
-(def doc-metadata "resources/edn/doc.edn")
-(def page-options "resources/edn/page.edn")
-(def styles-props "resources/edn/styles.edn")
-(def objects-renderers "resources/edn/objects.edn")
+(defn- res-path-join
+  [path]
+  (let [test-resource-path "resources/test"]
+    (.. (io/file test-resource-path path)
+        (getPath))))
+
+(def doc-out (res-path-join "pdf/doc.pdf"))
+(def one-md-in (res-path-join "md/doc.md"))
+(def doc-metadata (res-path-join "edn/doc.edn"))
+(def page-options (res-path-join "edn/page.edn"))
+(def styles-props (res-path-join "edn/styles.edn"))
+(def objects-renderers (res-path-join "edn/objects.edn"))
 
 ;; Library access tests
 (deftest test-markdown

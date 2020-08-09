@@ -11,6 +11,7 @@
                  [org.jsoup/jsoup "1.13.1"]
                  [com.openhtmltopdf/openhtmltopdf-core "1.0.4"]
                  [com.openhtmltopdf/openhtmltopdf-pdfbox "1.0.4"]
+                 [com.openhtmltopdf/openhtmltopdf-svg-support "1.0.4"]
                  [eftest "0.5.9"]]
   :plugins [[lein-eftest "0.5.9"]]
   :source-paths ["src/clj"]

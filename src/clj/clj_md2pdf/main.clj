@@ -36,5 +36,6 @@
               (println "Missing required arguments 'out' and/or 'in'.")
               (let [[out & ins] (:arguments arg-opts)]
                 (println "Rendering PDF..")
-                (gen-pdf-from-files out ins (:options arg-opts))
-                (println "done."))))))
+                (if (gen-pdf-from-files out ins (:options arg-opts))
+                  (println "done.")
+                  (println "failed.")))))))

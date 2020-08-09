@@ -4,4 +4,4 @@
 
 This is a test document.
 
-<object id="my-object" style="width: 200px; height: 200px;"></object>
+<object id="a-object" style="width: 200px; height: 200px;"></object>

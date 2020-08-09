@@ -1,6 +1,0 @@
-;; Referenced from: https://github.com/gered/clj-htmltopdf
-{:by-id {"a-object" (fn [element-attrs ^java.awt.Graphics2D g]
-                      (.setColor g java.awt.Color/BLUE)
-                      (.drawRect g 50 50 200 200)
-                      (.setColor g java.awt.Color/RED)
-                      (.drawRect g 75 75 300 200))}}

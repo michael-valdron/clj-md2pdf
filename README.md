@@ -71,7 +71,15 @@ dependency use in your Clojure projects by performing the following:
 ```
 lein install
 ```
-
+Then you can include in your Leiningen project's `project.clj` like so:
+```clojure
+(defproject ...
+  ...
+  :dependencies [...
+                 [clj-md2pdf "x.x.x"]
+                 ...]
+  ...)
+```
 # Usage
 
 ## CLI Tool

@@ -1,1 +1,3 @@
-{:title "A MD generated PDF"}
+{:title "A MD generated PDF"
+ :author "Sam Smith"
+ :keywords "pdf,md"}

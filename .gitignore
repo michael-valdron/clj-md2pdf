@@ -2,8 +2,8 @@
 /classes
 /checkouts
 profiles.clj
-pom.xml
 pom.xml.asc
+*.asc
 *.jar
 *.class
 /.lein-*
@@ -14,8 +14,14 @@ pom.xml.asc
 # pdf files
 *.pdf
 
+# Do not ignore anything in examples
+!resources/examples/**/*
+
 # vscode
 .vscode/
 
 # calva
 .calva/
+
+# settings.xml
+settings.xml

@@ -2,6 +2,8 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.clojars.michael-valdron/clj-md2pdf.svg)](https://clojars.org/org.clojars.michael-valdron/clj-md2pdf)
 
+**Temporarily Unmaintained**
+
 A Clojure powered CLI tool and library for performing moderately complex 
 Markdown to PDF document generation. A great 
 tool for those who desire simple semi-programmatic document creation. 
